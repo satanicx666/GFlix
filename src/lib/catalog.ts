@@ -1,0 +1,41 @@
+export const COLLECTIONS = [
+  { kind: "company", id: 420, name: "Marvel Studios", note: "Studio" },
+  { kind: "company", id: 2, name: "Walt Disney Pictures", note: "Studio" },
+  { kind: "company", id: 3, name: "Pixar", note: "Studio" },
+  { kind: "company", id: 9993, name: "DC", note: "Studio" },
+  { kind: "company", id: 1, name: "Lucasfilm", note: "Studio" },
+  { kind: "company", id: 521, name: "DreamWorks Animation", note: "Studio" },
+  { kind: "company", id: 10342, name: "Studio Ghibli", note: "Studio" },
+  { kind: "collection", id: 10194, name: "Toy Story", note: "Collection" },
+  { kind: "collection", id: 1241, name: "Harry Potter", note: "Collection" },
+  { kind: "collection", id: 10, name: "Star Wars", note: "Collection" },
+  { kind: "collection", id: 119, name: "The Lord of the Rings", note: "Collection" },
+  { kind: "collection", id: 9485, name: "Fast & Furious", note: "Collection" },
+  { kind: "collection", id: 86311, name: "The Avengers", note: "Collection" },
+  { kind: "collection", id: 645, name: "James Bond 007", note: "Collection" },
+  { kind: "collection", id: 263, name: "The Dark Knight", note: "Collection" },
+  { kind: "collection", id: 87359, name: "Mission: Impossible", note: "Collection" },
+  { kind: "collection", id: 2150, name: "Shrek", note: "Collection" },
+  { kind: "collection", id: 328, name: "Jurassic Park", note: "Collection" },
+] as const;
+
+export const COUNTRIES = [
+  { code: "ID", name: "Indonesia" },
+  { code: "US", name: "United States" },
+  { code: "KR", name: "South Korea" },
+  { code: "JP", name: "Japan" },
+  { code: "CN", name: "China" },
+  { code: "TH", name: "Thailand" },
+  { code: "IN", name: "India" },
+  { code: "GB", name: "United Kingdom" },
+  { code: "FR", name: "France" },
+  { code: "ES", name: "Spain" },
+  { code: "PH", name: "Philippines" },
+  { code: "MY", name: "Malaysia" },
+  { code: "TR", name: "Turkey" },
+  { code: "DE", name: "Germany" },
+  { code: "IT", name: "Italy" },
+  { code: "HK", name: "Hong Kong" },
+];
+
+export const YEARS = Array.from({ length: new Date().getFullYear() - 1969 }, (_, i) => new Date().getFullYear() - i);

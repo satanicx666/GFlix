@@ -1,0 +1,2 @@
+ALTER TABLE public.advertisements DROP CONSTRAINT advertisements_placement_check;
+ALTER TABLE public.advertisements ADD CONSTRAINT advertisements_placement_check CHECK (placement IN ('home','home_featured_extra','home_trending','home_trending_extra','home_middle','home_movies_extra','home_tv','home_indo','home_bottom','home_bottom_extra','details','details_bottom','catalog_top','catalog_bottom','search_top','search_bottom','watch_top','watch_bottom','watch_episodes','watch_recommendations','party_top','party_bottom','preroll','footer'));

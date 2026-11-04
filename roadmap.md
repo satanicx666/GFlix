@@ -1,0 +1,22 @@
+# Roadmap
+- [x] Expand advertisement placements and admin previews; home save/render verified; broader multi-page browser check timed out, all test ads removed.
+- [x] Provide 10 independently configurable home advertisement positions; all 10 saved/rendered and mobile overflow checked.
+- [x] Add six independent advertisement positions to catalog, search, details, collection, watchlist, browsing and Watch Party; watch adds episode/recommendation positions; shared placement isolation tests passed.
+- [x] Add active public Watch Party directory and PIN-protected private rooms; creation, public discovery/private exclusion, wrong PIN denial, correct PIN join, chat readback, refresh, host episode change, end room and mobile verified; test rooms removed. Embeds remain independently controlled.
+- [x] Fix Watch Party creation and embedded playback; authenticated two-window invitations, presence, bidirectional chat, TV episode URL, refresh and mobile verified; 12 tests passed and temporary room removed. Embeds play independently because no provider synchronization API is available.
+- [x] Add TV season/episode list and movie recommendations on watch pages; guest episode switching updated the player URL, season selection and recommendation navigation verified, mobile has no overflow; 10 existing playback/preview tests passed
+- [x] Add admin-editable movie/TV embed templates with validation and authorization confirmation; authenticated save/readback and guest player URL verified, defaults restored; 10 tests passed
+- [x] Remove premium across navigation, account, admin, playback, and access rules; retain deprecated historical database fields without gating
+- [x] Enable guest playback; signed-out movie and TV season 2 episode 3 player verified
+- [x] Add admin advertisement CRUD, six placements, image upload, desktop/mobile preview; saved banner, pre-roll continuation, inactive hiding, and deletion verified; temporary ads cleaned up; 14 tests passed
+- [x] Add authorized nxsha.space movie/TV playback; 12 tests passed, authenticated Play links verified for movie 862 and TV 1399 season 2 episode 3; provider player controls rendered, actual video progression not verified
+- [x] Keep TMDB; repository integration cancelled by user
+- [x] Add automatic resumable TMDB catalog import and scheduled updates; signed callback imported 1,000 IDs and 4 full details, verified in admin and public detail pages
+- [x] Fix hover preview ownership, cancellation, and scroll dismissal
+- [x] Persist film/TV catalog and link admin video/embed sources
+- [x] Verify hover and authenticated admin catalog/video flow with temporary embed fixture; real owner-hosted playback awaits a licensed URL
+- [x] Design, browse/search/details
+- [x] Accounts, roles, watchlist
+- [x] Licensed video sources, fastest-server player, ads for free members
+- [x] Admin: dashboard, users, servers, videos, memberships, audit log
+- [x] Stripe checkout cancelled: premium removed by user

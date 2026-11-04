@@ -1,0 +1,92 @@
+{
+ "source": "code-archive",
+ "source_name": "le21_1.zip",
+ "source_summary": "Exported Lovable TanStack Start streaming platform (movies/TV catalog via TMDB, browse/search/details, watchlist, watch parties with PIN-protected rooms, guest playback with ads, admin panel: users/servers/videos/ads/catalog/settings/audit log, TMDB catalog sync). Uses Lovable Cloud (Supabase) auth + Postgres with 12 Drizzle SQL migrations defining 17 tables.",
+ "capabilities": [
+  {
+   "capability": "application_code",
+   "source": "archive src/",
+   "outcome": "migrated",
+   "status": "done",
+   "next_action": "Copy src/, config, drizzle into project; exclude .env, .lovable, node_modules"
+  },
+  {
+   "capability": "schema",
+   "source": "drizzle/migrations/*.sql (12 migrations, 17 tables + RLS + triggers + storage buckets)",
+   "outcome": "migrated",
+   "status": "done: 17 tables, RLS, functions, triggers applied to Lovable Cloud; storage buckets videos+branding created",
+   "next_action": "Apply migrations to new Lovable Cloud database in order"
+  },
+  {
+   "capability": "records",
+   "source": "none found in archive",
+   "outcome": "pending_user_export",
+   "status": "pending",
+   "next_action": "After preview, request CSV/JSON exports (media_catalog, licensed_videos, site_settings, user data) from the old project's Lovable Cloud dashboard"
+  },
+  {
+   "capability": "auth_identities",
+   "source": "Lovable Cloud auth of old project; handle_new_user trigger grants admin to first signup",
+   "outcome": "migrate",
+   "status": "pending",
+   "next_action": "New Cloud auth; user import pending record export"
+  },
+  {
+   "capability": "authorization",
+   "source": "RLS policies + public.user_roles + has_role() + admin_audit_log",
+   "outcome": "migrate",
+   "status": "pending",
+   "next_action": "Included in schema migrations"
+  },
+  {
+   "capability": "uploaded_files",
+   "source": "storage bucket policies in 0001_videos_storage_policies.sql",
+   "outcome": "recreate",
+   "status": "pending",
+   "next_action": "Recreate buckets in new Cloud storage; file bytes pending export"
+  },
+  {
+   "capability": "external_providers",
+   "source": "TMDB API (server-side key), authorized embed playback via nxsha.space templates in site_settings",
+   "outcome": "preserve",
+   "status": "pending",
+   "next_action": "TMDB key is a server secret \u2014 request via secure secret form at verification; embed templates carry over in site_settings records"
+  },
+  {
+   "capability": "public_endpoints",
+   "source": "src/routes/api/public/jobs/tmdb-sync.ts (authenticated managed callback)",
+   "outcome": "migrated",
+   "status": "done: /api/public/jobs/tmdb-sync active",
+   "next_action": "Copied with src/"
+  },
+  {
+   "capability": "schedules",
+   "source": "TMDB catalog sync jobs (catalog_sync_jobs/queue tables, polling)",
+   "outcome": "migrated",
+   "status": "done: 6 managed HTTP schedules (movie/tv x export/hydrate/changes) every 5 min staggered; verified import progressed (130 catalog rows)",
+   "next_action": "Schema + code copied; verify after records import"
+  },
+  {
+   "capability": "secrets",
+   "source": "old .env holds old backend keys (old platform metadata, not reusable); TMDB key referenced by server functions",
+   "outcome": "re-provisioned",
+   "status": "done: TMDB_API_KEY saved via secure form",
+   "next_action": "New Cloud keys generated on enable; request TMDB key via secret form before verification"
+  },
+  {
+   "capability": "cutover",
+   "source": "old Lovable project remains published/source of truth",
+   "outcome": "user_decision",
+   "status": "pending",
+   "next_action": "After records import and verification, user repoints domain/usage to new app"
+  },
+  {
+   "capability": "verification",
+   "source": "vitest suite (routing, viewing, catalog-sync, ads, party, playback-url, etc.)",
+   "outcome": "run",
+   "status": "partial: build OK, typecheck clean, 53/53 tests pass; guest home/search/details/watch/login verified in browser; catalog sync verified; admin + watchlist + auth flows pending (no users until signup or records import)",
+   "next_action": "Install deps, run vitest, exercise build + representative flows"
+  }
+ ],
+ "notes": "Source archive is itself a Lovable TanStack Start export; target template matches (identical vite.config, server.ts; start.ts differs only by auth-attacher middleware). .env excluded (old backend keys \u2014 platform metadata). TanStack package versions pinned in target package.json are preserved."
+}
